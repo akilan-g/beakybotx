@@ -1,6 +1,7 @@
 import cv2  # Importing OpenCV for image display and processing
 from picamera2 import Picamera2  # Importing Picamera2 to control the Raspberry Pi Camera
 
+camera = Picamera2(tuning_file="/usr/share/libcamera/ipa/rpi/vc4/imx219_noir.json") #Camera Tuning 
 camera = Picamera2() # Initialize the camera
 camera.preview_configuration.main.size = (360, 360) # Set the camera resolution to 360x360
 camera.preview_configuration.main.format = "RGB888" # Set the camera format to RGB888 (RGB with 8 bits per channel)
