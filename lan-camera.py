@@ -34,4 +34,4 @@ def video_feed():
 if __name__ == '__main__': # Run the Flask web server if the script is being executed directly
 # The Flask server will run on all available network interfaces ('0.0.0.0')
 # The server will run on port 5000 and allow multiple threads to handle requests simultaneously
-app.run(host='0.0.0.0', port=5000, threaded=True)
+    app.run(host='0.0.0.0', port=5000, threaded=True)
