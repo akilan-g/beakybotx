@@ -29,7 +29,7 @@ def generate_frames(): # Function to generate frames continuously for video stre
 
 @app.route('/video_feed') # Define the route for video streaming (/video_feed) in the Flask app
 def video_feed():
-return Response(generate_frames(), mimetype='multipart/x-mixed-replace; boundary=frame')  # Return the video stream response using the 'generate_frames' function
+    return Response(generate_frames(), mimetype='multipart/x-mixed-replace; boundary=frame')  # Return the video stream response using the 'generate_frames' function
 
 if __name__ == '__main__': # Run the Flask web server if the script is being executed directly
 # The Flask server will run on all available network interfaces ('0.0.0.0')
