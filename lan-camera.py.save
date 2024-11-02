@@ -27,7 +27,7 @@ def generate_frames(): # Function to generate frames continuously for video stre
         # Yield the frame in the correct format for live streaming
         yield (b'--frame\r\n'
                 b'Content-Type: image/jpeg\r\n\r\n' + frame_bytes + b'\r\n')
-        time.sleep(0.033)  # Add a delay to control frame rate (10 frames per second)
+        time.sleep(0.05)  # Add a delay to control frame rate (10 frames per second)
 
 
 @app.route('/video_feed') # Define the route for video streaming (/video_feed) in the Flask app
