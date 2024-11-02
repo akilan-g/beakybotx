@@ -31,9 +31,9 @@ def generate_frames(): # Function to generate frames continuously for video stre
 
         if cv2.waitKey(1) == ord('q'):     # Check if the 'q' key is pressed, if yes, break the loop and stop capturing
         
-        break
+            break
 
-        cv2.destroyAllWindows() # Close all OpenCV windows when the loop is terminated
+            cv2.destroyAllWindows() # Close all OpenCV windows when the loop is terminated
 
 
 @app.route('/video_feed') # Define the route for video streaming (/video_feed) in the Flask app
