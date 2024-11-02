@@ -29,6 +29,12 @@ def generate_frames(): # Function to generate frames continuously for video stre
                 b'Content-Type: image/jpeg\r\n\r\n' + frame_bytes + b'\r\n')
         time.sleep(0.1)  # Add a delay to control frame rate (10 frames per second)
 
+        if cv2.waitKey(1) == ord('q'):     # Check if the 'q' key is pressed, if yes, break the loop and stop capturing
+        
+        break
+
+cv2.destroyAllWindows() # Close all OpenCV windows when the loop is terminated
+
 
 @app.route('/video_feed') # Define the route for video streaming (/video_feed) in the Flask app
 def video_feed():
