@@ -10,7 +10,7 @@ def generate_frames(): # Function to generate frames continuously for video stre
 
 #with Picamera2() as camera: # Initialize the Raspberry Pi camera using Picamera2
     camera=Picamera2(tuning="/usr/share/libcamera/ipa/rpi/vc4/imx219_noir.json")       
-    camera.preview_configuration.main.size = (320, 240)  # Set the camera resolution to 640x480 pixels
+    camera.preview_configuration.main.size = (1920, 1080)  # Set the camera resolution to mentioned pixels
     camera.preview_configuration.main.format = "RGB888" # Set the camera image format to RGB888 (24-bit color)
     camera.preview_configuration.align()  # Align the camera's preview configuration (important for hardware setup)
     camera.configure("preview")  # Configure the camera to be in preview mode
@@ -27,7 +27,7 @@ def generate_frames(): # Function to generate frames continuously for video stre
         # Yield the frame in the correct format for live streaming
         yield (b'--frame\r\n'
                 b'Content-Type: image/jpeg\r\n\r\n' + frame_bytes + b'\r\n')
-        time.sleep(0.1)  # Add a delay to control frame rate (10 frames per second)
+        time.sleep(0.033)  # Add a delay to control frame rate (30 frames per second)
 
 
 @app.route('/video_feed') # Define the route for video streaming (/video_feed) in the Flask app
