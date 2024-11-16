@@ -11,6 +11,9 @@ chip = 0      # Default GPIO chip (change if necessary)
 h = lgpio.gpiochip_open(chip)
 lgpio.gpio_claim_input(h, PIR_PIN)
 
+# Specify the folder to save images
+output_folder = "/home/tweetypi/feathered-visitors"
+
 # Initialize the camera
 camera = Picamera2()
 camera.preview_configuration.main.size = (640, 480)  # Adjust resolution as needed
@@ -32,6 +35,8 @@ try:
             # Save the frame as an image file
             timestamp = time.strftime("%Y%m%d_%H%M%S")
             file_name = f"motion_photo_{timestamp}.jpg"
+            # Full file path
+            file_path = os.path.join(output_folder, file_name)
             cv2.imwrite(file_name, frame)
             print(f"Photo saved as {file_name}")
 
