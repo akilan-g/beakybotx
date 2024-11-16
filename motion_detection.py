@@ -38,13 +38,10 @@ try:
             file_name = f"motion_photo_{timestamp}.jpg"
             cv2.imwrite(file_name, frame)
             print(f"Photo saved as {file_name}")
-         else:
-            print("Error: Could not capture the frame.")
-            
             # Add a delay to avoid multiple triggers
             time.sleep(2)
         else:
-            print("No motion detected.")
+                print("No motion detected.")
         
         time.sleep(0.5)  # Check the PIR sensor state every 0.5 seconds
 
