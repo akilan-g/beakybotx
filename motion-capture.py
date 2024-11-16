@@ -2,7 +2,7 @@ import time
 import lgpio
 from picamera2 import Picamera2
 import cv2
-
+import os
 # PIR sensor setup
 PIR_PIN = 21  # Replace with your actual GPIO pin
 chip = 0      # Default GPIO chip (change if necessary)
@@ -37,7 +37,7 @@ try:
             file_name = f"motion_photo_{timestamp}.jpg"
             # Full file path
             file_path = os.path.join(output_folder, file_name)
-            cv2.imwrite(file_name, frame)
+            cv2.imwrite(file_path, frame)
             print(f"Photo saved as {file_name}")
 
             # Add a delay to avoid multiple triggers
