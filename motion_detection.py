@@ -1,6 +1,14 @@
 import cv2
 import lgpio
 import time
+from picamera2 import Picamera2
+
+#with Picamera2() as camera: # Initialize the Raspberry Pi camera using Picamera2
+    camera=Picamera2(tuning="/usr/share/libcamera/ipa/rpi/vc4/imx219_noir.json")       
+    camera.preview_configuration.main.size = (1920, 1080)  # Set the camera resolution to mentioned pixels
+    camera.preview_configuration.main.format = "RGB888" # Set the camera image format to RGB888 (24-bit color)
+    camera.preview_configuration.align()  # Align the camera's preview configuration (important for hardware setup)
+    camera.configure("preview")  # Configure the camera to be in preview mode
 
 # GPIO setup for PIR sensor
 PIR_PIN = 21  # GPIO pin connected to PIR sensor
@@ -21,7 +29,7 @@ try:
         motion = lgpio.gpio_read(h, PIR_PIN)  # Read the PIR sensor state
         if motion:
             print("Motion Detected!")
-            
+            camera.start()
             # Capture a frame
             ret, frame = camera.read()
             if ret:
