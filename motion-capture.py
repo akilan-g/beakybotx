@@ -15,8 +15,8 @@ lgpio.gpio_claim_input(h, PIR_PIN)
 output_folder = "/home/tweetypi/feathered-visitors"
 
 # Initialize the camera
-camera = Picamera2()
-camera.preview_configuration.main.size = (640, 480)  # Adjust resolution as needed
+camera = Picamera2(tuning="/usr/share/libcamera/ipa/rpi/vc4/imx219_noir.json")
+camera.preview_configuration.main.size = (1920, 1080)  # Adjust resolution as needed
 camera.preview_configuration.main.format = "RGB888"  # RGB format
 camera.configure("preview")
 camera.start()
