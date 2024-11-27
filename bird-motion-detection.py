@@ -70,7 +70,7 @@ while True:
             class_id = int(classes[i])
             label = labels[class_id]
             if label == "bird":  # Focus on detecting birds
-		print("bird detected")
+		        print("bird detected")
                 ymin, xmin, ymax, xmax = boxes[i]
                 h, w, _ = frame.shape
                 xmin = int(xmin * w)
