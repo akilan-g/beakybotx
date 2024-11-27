@@ -24,16 +24,30 @@ input_shape = input_details[0]['shape']
 
 # Initialize the camera (you can replace with your camera index or PiCamera setup)
 #cap = cv2.VideoCapture(0)  # 0 for the default camera
-cap=Picamera2(tuning="/usr/share/libcamera/ipa/rpi/vc4/imx219_noir.json")       
+cap=Picamera2()       
 cap.preview_configuration.main.size = (1920, 1080)  # Set the camera resolution to mentioned pixels
 cap.preview_configuration.main.format = "RGB888" # Set the camera image format to RGB888 (24-bit color)
 cap.preview_configuration.align()  # Align the camera's preview configuration (important for hardware setup)
 cap.configure("preview")  # Configure the camera to be in preview mode
 print("Starting the object detection... Press 'q' to exit.")
 
-while cap.isOpened():
-    ret, frame = cap.read()
-    if not ret:
+cap.start()
+#picam2.start()
+
+print("Starting the object detection... Press 'q' to exit.")
+
+#while cap.isOpened():
+    #ret, frame = cap.read()
+    #if not ret:
+        #print("Failed to grab frame")
+        #break
+
+
+while True:
+    # Capture frame
+    frame = cap.capture_array()  # Get the image as a NumPy array
+    
+    if frame is None:
         print("Failed to grab frame")
         break
 
@@ -56,6 +70,7 @@ while cap.isOpened():
             class_id = int(classes[i])
             label = labels[class_id]
             if label == "bird":  # Focus on detecting birds
+		print("bird detected")
                 ymin, xmin, ymax, xmax = boxes[i]
                 h, w, _ = frame.shape
                 xmin = int(xmin * w)
