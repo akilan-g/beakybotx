@@ -67,6 +67,7 @@ while True:
     # Process detection results
     for i in range(len(scores)):
         if scores[i] > 0.5:  # Confidence threshold
+            print("some object detected")
             class_id = int(classes[i])
             label = labels[class_id]
             if label == "bird":  # Focus on detecting birds
