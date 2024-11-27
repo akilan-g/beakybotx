@@ -70,13 +70,13 @@ while True:
             class_id = int(classes[i])
             label = labels[class_id]
             if label == "bird":  # Focus on detecting birds
-		        print("bird detected")
-                    ymin, xmin, ymax, xmax = boxes[i]
-                    h, w, _ = frame.shape
-                    xmin = int(xmin * w)
-                    xmax = int(xmax * w)
-                    ymin = int(ymin * h)
-                    ymax = int(ymax * h)
+                print("bird detected")
+                ymin, xmin, ymax, xmax = boxes[i]
+                h, w, _ = frame.shape
+                xmin = int(xmin * w)
+                xmax = int(xmax * w)
+                ymin = int(ymin * h)
+                ymax = int(ymax * h)
 
                 # Draw bounding box and label
                 cv2.rectangle(frame, (xmin, ymin), (xmax, ymax), (0, 255, 0), 2)
