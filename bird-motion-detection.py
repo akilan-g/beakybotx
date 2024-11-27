@@ -67,6 +67,7 @@ while True:
     # Process detection results
     for i in range(len(scores)):
         if scores[i] > 0.5:  # Confidence threshold
+            print(f"Class: {classes[i]}, Label: {labels[int(classes[i])]}, Score: {scores[i]}")
             print("some object detected")
             class_id = int(classes[i])
             label = labels[class_id]
