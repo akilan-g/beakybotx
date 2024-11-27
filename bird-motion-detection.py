@@ -25,7 +25,7 @@ input_shape = input_details[0]['shape']
 # Initialize the camera (you can replace with your camera index or PiCamera setup)
 #cap = cv2.VideoCapture(0)  # 0 for the default camera
 cap=Picamera2()       
-cap.preview_configuration.main.size = (1920, 1080)  # Set the camera resolution to mentioned pixels
+cap.preview_configuration.main.size = (640, 480)  # Set the camera resolution to mentioned pixels
 cap.preview_configuration.main.format = "RGB888" # Set the camera image format to RGB888 (24-bit color)
 cap.preview_configuration.align()  # Align the camera's preview configuration (important for hardware setup)
 cap.configure("preview")  # Configure the camera to be in preview mode
@@ -66,7 +66,7 @@ while True:
 
     # Process detection results
     for i in range(len(scores)):
-        if scores[i] > 0.5:  # Confidence threshold
+        if scores[i] > 0.3:  # Confidence threshold
             print(f"Class: {classes[i]}, Label: {labels[int(classes[i])]}, Score: {scores[i]}")
             print("some object detected")
             class_id = int(classes[i])
