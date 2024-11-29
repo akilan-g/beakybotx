@@ -24,7 +24,7 @@ input_shape = input_details[0]['shape']
 
 # Initialize the camera (you can replace with your camera index or PiCamera setup)
 #cap = cv2.VideoCapture(0)  # 0 for the default camera
-cap=Picamera2()       
+cap=Picamera2(tuning="/usr/share/libcamera/ipa/rpi/vc4/imx219_noir.json")       
 cap.preview_configuration.main.size = (640, 480)  # Set the camera resolution to mentioned pixels
 cap.preview_configuration.main.format = "RGB888" # Set the camera image format to RGB888 (24-bit color)
 cap.preview_configuration.align()  # Align the camera's preview configuration (important for hardware setup)
