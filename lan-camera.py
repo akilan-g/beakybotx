@@ -1,3 +1,10 @@
+#Home Assistant YAML Configuration
+#camera:
+  #- platform: mjpeg
+    #name: "Beaky"
+    #mjpeg_url: "http://<Home Assistant Host Device IP Address>:<port>/video_feed"
+
+
 import io  # Import io for input/output operations (not used directly in this version)
 import cv2  # Import OpenCV for image processing and encoding
 from flask import Flask, Response  # Import Flask for web server and Response for streaming
