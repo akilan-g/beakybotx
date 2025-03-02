@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bird Species Identification</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 min-h-screen">
+    <div class="container mx-auto px-4 py-8">
+        <div class="max-w-2xl mx-auto bg-white rounded-lg shadow-md p-6">
+            <h1 class="text-3xl font-bold text-center mb-8 text-blue-600">
+                Bird Species Identifier
+            </h1>
+            
+            <form action="/predict" method="POST" enctype="multipart/form-data" class="space-y-6">
+                <div class="flex flex-col items-center justify-center border-2 border-dashed border-gray-300 rounded-lg p-8">
+                    <input type="file" name="file" id="file" 
+                           class="hidden" 
+                           accept="image/*" 
+                           onchange="form.submit()">
+                    <label for="file" 
+                           class="cursor-pointer bg-blue-500 text-white px-6 py-3 rounded-lg hover:bg-blue-600 transition-colors">
+                        Upload Bird Image
+                    </label>
+                    <p class="mt-2 text-gray-500 text-sm">
+                        Supported formats: JPG, JPEG, PNG
+                    </p>
+                </div>
+            </form>
+
+            {% if filename %}
+            <div class="mt-8">
+                <h2 class="text-xl font-semibold mb-4">Uploaded Image</h2>
+                <div class="border rounded-lg overflow-hidden">
+                    <img src="{{ url_for('static', filename='uploads/' + filename) }}" 
+                         alt="Uploaded bird image" 
+                         class="w-full h-64 object-cover">
+                </div>
+            </div>
+            {% endif %}
+
+            {% if prediction %}
+            <div class="mt-8 bg-gray-50 rounded-lg p-6">
+                <h2 class="text-xl font-semibold mb-4">Prediction Results</h2>
+                <div class="space-y-3">
+                    <p class="text-gray-700">
+                        <span class="font-semibold">Species:</span> 
+                        {{ prediction.species }}
+                    </p>
+                    <p class="text-gray-700">
+                        <span class="font-semibold">Scientific Name:</span> 
+                        {{ prediction.scientific_name }}
+                    </p>
+                    <p class="text-gray-700">
+                        <span class="font-semibold">Confidence:</span> 
+                        {{ prediction.confidence }}
+                    </p>
+                </div>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</body>
+</html>
